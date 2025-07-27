@@ -1,0 +1,113 @@
+{
+  "name": "Speech",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "speech",
+        "voice": {
+          "__rl": true,
+          "value": "2EiwWnXFnvU5JabPnv8n",
+          "mode": "list",
+          "cachedResultName": "Clyde"
+        },
+        "text": "Hey there little darlin. Come over and give me a kiss and squeeze. ",
+        "additionalOptions": {},
+        "requestOptions": {}
+      },
+      "type": "@elevenlabs/n8n-nodes-elevenlabs.elevenLabs",
+      "typeVersion": 1,
+      "position": [
+        -432,
+        80
+      ],
+      "id": "d5cf73a2-ea2c-4af2-8306-ed3935b40946",
+      "name": "Convert text to speech",
+      "credentials": {
+        "elevenLabsApi": {
+          "id": "59mxnlgBDS1AQrlT",
+          "name": "ElevenLabs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.7.200:5000/play-audio-base64",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $input.item.binary.data }}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -48,
+        80
+      ],
+      "id": "5a849cc3-7a5a-4f5e-aa60-41d8154be114",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -912,
+        80
+      ],
+      "id": "0ac250ef-7cde-4b57-b9d5-04387c255568",
+      "name": "When clicking ‘Execute workflow’"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Convert text to speech": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Convert text to speech",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "63bc8a5e-b122-4e53-ae68-29759de97ff3",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8dd051d12c30cd3b738999dcf9f44fceb4e2a80c33d116883d1f0d41872f4969"
+  },
+  "id": "f2Zj8m5wQDqDSJK8",
+  "tags": []
+}
