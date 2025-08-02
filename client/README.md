@@ -3,8 +3,10 @@
 ## Installation Requirements
 
 ```
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
+bash Miniforge3-Linux-aarch64.sh
 conda env create -f environment.yml
-conda activate flask-client
+conda activate flask-audio
 
 ```
 ### 1. Install System Dependencies
@@ -15,7 +17,24 @@ First, update your Raspberry Pi and install required system packages:
 sudo apt update
 sudo apt upgrade -y
 
-# Install audio and development packages
+sudo apt install mpg123 alsa-utils ffmpeg
+sudo apt install pulseaudio pulseaudio-utils
+sudo apt install python3-dev
+sudo apt install libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
+sudo apt install libasound2-dev
+conda remove pygame
+```
+
+## Test that the audo system works
+```
+speaker-test -t sine -f 1000 -l 1 -s 1
+sudo find /usr -name "*.wav" | head -1 | xargs aplay
+```
+
+
+# You might need to remove pygame
+
+## Install audio and development packages
 sudo apt install -y \
     python3-pip \
     python3-dev \
@@ -209,3 +228,7 @@ For production use, consider adding:
 - **Multiple wake words** support
 - **Conversation context** tracking
 - **Response audio playback** integration with your existing MP3 player
+
+
+wind: http://192.168.7.200:5000/play-audio-base64
+raspi 1: http://192.168.7.141:5000/play-audio-base64
