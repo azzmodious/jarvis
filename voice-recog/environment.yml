@@ -1,0 +1,17 @@
+name: voice-assistant
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - pip
+  - portaudio
+  - numpy
+  - pip:
+    - SpeechRecognition>=3.10.0
+    - pyaudio>=0.2.11
+    - requests>=2.28.0
+    - PyYAML>=6.0
+    - pydub>=0.25.1
+    - sounddevice>=0.4.0
+    - soundfile>=0.10.0

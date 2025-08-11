@@ -1,0 +1,49 @@
+# Voice Assistant Configuration
+
+# Wake word to activate the assistant
+wake_word: "jarvis"
+
+# Phrases that will stop the assistant
+stop_phrases:
+  - "stop listening"
+  - "goodbye"
+  - "exit"
+  - "quit"
+  - "never mind"
+
+# n8n webhook URL
+webhook_url: "https://n8n.casa-bakewell.com/webhook/discord-general-channel"
+
+# Client identifier for the webhook payload
+client_id: "voice_assistant"
+
+# Recognition timeouts (in seconds)
+recognition_timeout: 5      # How long to wait for command after wake word
+phrase_timeout: 3           # Max time for a single phrase
+
+# Audio recognition settings
+energy_threshold: 300               # Microphone sensitivity
+dynamic_energy_threshold: true      # Auto-adjust for ambient noise
+pause_threshold: 0.8               # Silence duration before considering speech ended
+
+# Optional Snowboy settings (if using offline wake word detection)
+snowboy_model: "jarvis.pmdl"       # Path to Snowboy model file
+snowboy_sensitivity: 0.5           # Wake word sensitivity (0.0-1.0)
+
+# Logging configuration
+logging_level: "INFO"              # DEBUG, INFO, WARNING, ERROR
+
+# Audio processing
+enable_noise_reduction: true       # Enable noise reduction (requires pydub)
+
+# Wake word acknowledgment sound
+acknowledgment_tone:
+  enabled: true                     # Enable/disable acknowledgment sound
+  audio_file: "tng_chirp3_clean.mp3"  # Path to audio file (WAV, MP3, FLAC, OGG, etc.)
+  volume: 0.5                       # Volume multiplier (0.0 to 1.0)
+  fallback_tone:                    # Used if audio file not found or fails
+    frequency: 800                  # Tone frequency in Hz
+    duration: 0.2                   # Tone duration in seconds
+
+# Language settings
+recognition_language: "en-US"      # Language for speech recognition

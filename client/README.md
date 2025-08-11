@@ -12,7 +12,7 @@ conda activate flask-audio
 ### 1. Install System Dependencies
 
 First, update your Raspberry Pi and install required system packages:
-
+https://claude.ai/chat/5c1a347a-b6bc-4a08-9cb0-2218ce0d520a
 ```bash
 sudo apt update
 sudo apt upgrade -y
