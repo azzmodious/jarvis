@@ -2,4 +2,4 @@
 #source ~/miniconda3/etc/profile.d/conda.sh
 
 # Run first script in env_one
-nohup bash -c 'conda activate flask-audio && python audio_client_rasp.py' > audio_client.log 2>&1 &
+nohup bash -c 'source ~/miniforge3/etc/profile.d/conda.sh && conda activate flask-audio && python audio_client_rasp.py' > audio_client.log 2>&1 &
